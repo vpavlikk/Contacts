@@ -1,9 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Header from './Header/Header';
-import View from './View/View';
-import CardEdit from './Add/CardEdit';
+import Header from './components/Header/Header';
+import Contacts from './components/Contacts/Contacts';
+import CardEdit from './components/Add/CardEdit';
 
 function App(props) {
 
@@ -11,7 +10,7 @@ function App(props) {
     <div className="app-wrapper">
       <Header />
       <div className="content-wrapper">
-        <View />
+        <Contacts />
         {/* <CardEdit /> */}
       </div>
     </div>

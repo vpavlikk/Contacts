@@ -4,8 +4,8 @@ import './Header.sass'
 const Header = () => {
     return(
     <header  className="header">
-        <div className="menu-item selected">VIEW</div>
-        <div className="menu-item">ADD</div>
+        <div className="menu-item selected">CONTACTS</div>
+        <div className="menu-item">ADD NEW</div>
     </header>)
 }
 

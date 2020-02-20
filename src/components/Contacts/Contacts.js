@@ -1,8 +1,8 @@
 import React from 'react'
-import "./View.sass"
+import "./Contacts.sass"
 import ContactCard from './ContactCard/ContactCard'
 
-const View = () => {
+const Contacts = () => {
     return (
         <>
             <div>
@@ -29,4 +29,4 @@ const View = () => {
     )
 }
 
-export default View;
+export default Contacts;
