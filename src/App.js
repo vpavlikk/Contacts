@@ -1,16 +1,16 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header/Header';
-import Contacts from './components/Contacts/Contacts';
 import CardEdit from './components/Add/CardEdit';
+import ContactsContainer from './components/Contacts/ContactsContainer';
 
-function App(props) {
+function App() {
 
   return (
     <div className="app-wrapper">
       <Header />
       <div className="content-wrapper">
-        <Contacts />
+        <ContactsContainer />
         {/* <CardEdit /> */}
       </div>
     </div>
