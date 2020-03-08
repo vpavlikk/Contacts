@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Contacts from "./Contacts";
-import {changeSearchFieldActionCreator} from './../../Redux/reducers/contacts-reducer'
+import {changeSearchField} from './../../Redux/reducers/contacts-reducer'
 
 
 
@@ -13,16 +13,16 @@ let mapStateToProps = (state) => {
         cards: state.contacts_state.cards
     }
 }
-let mapDispatchToProps = (dispatch) => {
-    let changeSearchField = (text) => {dispatch(changeSearchFieldActionCreator(text))}
-    return {
-        changeSearchField: changeSearchField    }
+// let mapDispatchToProps = (dispatch) => {
+//     let changeSearchField = (text) => {dispatch(changeSearchFieldActionCreator(text))}
+//     return {
+//         changeSearchField: changeSearchField    }
     
     
-}
+// }
 
 
 
 
-export default    connect(mapStateToProps, mapDispatchToProps)(Contacts);
+export default    connect(mapStateToProps, {changeSearchField})(Contacts);
 
