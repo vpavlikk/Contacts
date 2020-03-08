@@ -30,7 +30,10 @@ const contactsReducer = (state = initialState, action) => {
         }
     }
 }
+ 
+// ACTIONS CREATORS:
+export const changeSearchField = (newText) => {return {type: CHANGE_SEARCH_FIELD, newText}}
 
-export const changeSearchFieldActionCreator = (newText) => {return {type: CHANGE_SEARCH_FIELD, newText,}}
+// THUNK CREATORS:
 
 export default contactsReducer;
