@@ -46,11 +46,12 @@ router.put('/', async (req,res) => {
     const type = req.body.type
     const company = req.body.company
     const email = req.body.email
-    Contact.find({_id: id}, (err, resp)=>{console.log(resp)})
     let contact = await Contact.findOneAndUpdate({_id: id},{fullname: fullname, number:number, additional_number: additional_number, type: type, company: company, email: email})
     contact.save()
     res.status(200).json({message: "user successfully updated"})
 } )
+
+
 
 
 
