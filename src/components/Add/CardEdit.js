@@ -8,7 +8,7 @@ class CardEdit extends React.Component {
         super(props)
         this.state={
             inFocus: false,
-            fullname:'AAAAAAA',
+            fullname:'',
             number:'',
             ad_number:'',
             company:'',
@@ -37,11 +37,11 @@ class CardEdit extends React.Component {
                 <div className="ava-holder-editpage">
                     <img src={ava} alt=""/>
                 </div>
-                <div>
+                <div style={this.state.inFocus?{}:{marginTop: '20px'}}>
                     {
                     this.state.inFocus ? 
                     <input onBlur={this.onInputClick.bind(this)} onChange={this.handeleChanges} name='fullname' value={this.state.fullname} className="edt-input" placeholder="Fullname" /> :
-                    <span onClick={this.onInputClick.bind(this)} style={{marginLeft: '30px', marginTop: '30px'}}>{this.state.fullname}</span> 
+                    <span onClick={this.onInputClick.bind(this)} style={{marginLeft: '5%', paddingTop: '20px'}}>{!this.state.fullname ? 'Please tap here and enter f ullname' : this.state.fullname}</span> 
                     }
                 </div>
                 <div>
