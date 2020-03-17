@@ -19,7 +19,7 @@ const Contacts = (props) => {
                 <input  onChange={changeSearchField} ref={input} className='search' placeholder="Search" value={props.searchInputValue} />
                 <button className='ok-btn'>Ok</button>
             </div>
-            <div className="list-holder"> 
+            <div className="list-holder">
                 {arrayOfCards}
             </div>
             <div>
