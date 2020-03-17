@@ -2,12 +2,7 @@ import { connect } from "react-redux";
 import Contacts from "./Contacts";
 import {changeSearchFieldActionCreator} from './../../Redux/reducers/contacts-reducer'
 
-
-
-
-
-
-let mapStateToProps = (state) => {
+let mapStateToProps = (state) => {//что бы таким образом можна юыло прокидать стейт подключили контекст
     return {
         searchInputValue: state.contacts_state.searchInputValue,
         cards: state.contacts_state.cards
@@ -15,14 +10,67 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
     let changeSearchField = (text) => {dispatch(changeSearchFieldActionCreator(text))}
-    return {
-        changeSearchField: changeSearchField    }
-    
-    
+    return { changeSearchField: changeSearchField }
 }
 
-
-
-
 export default    connect(mapStateToProps, mapDispatchToProps)(Contacts);
+/*
+Так как в компоненте (отображения) Contacts нам удобнее работать с props ,потому что когда React
+встречает подобный компонент (Contacts), он собирает все JSX-атрибуты в один объект и закрепляет его за отдельной переменной
+Этот объект называется «пропсы» (props).Свойста Пропсов по дефолту существуют в каждом компоненте
+_____________________________________________________________________________________________________________________________________
+!! Мы подключаемся к контексту что бы каждый раз не прокидывать пропсы к дочерним компонентам ,как можна увидеть в App,js
+<ContactsContainer /> в пропсы контейнера мы не передавали стор, в котором стейт вот так <ContactsContainer store={props.store}/>,
+тоесть было бы без контекста так:
+ReactDOM.render( <App store={store}/> , document.getElementById('root')   );
+function App(props) {
+  <ContactsContainer store={props.store}/>
 
+мы стор в котором стейт передали в контекст <Provider store={store}> и потом передали уже стейт с контекста в сам контейнер
+let mapStateToProps = (state) не прокидывае через App.js ,тоесть мы не прокидывали стор черрез родитнльские компоненты контейнера
+мы забрали стор(стейт) с контекста (в контексті наш стор .в сторі знаходяться редюсери які мають посилання на state = initialState стейт)
+____________________________________________________________________________________________________________________________________
+Есть два типа комопнентов -контейнерна и компонента представления(Прндставления делиться на Функциональная и классовая)
+ нужно для того чтобы разделить функционал и отображение
+
+-Компонента предстваления не знает о состоянии преложения ,она принимает данные и отображает их в нужном месте,
+имеет миниальную логику,данные получают в качестве свойства и могут инициализировать изминения стейта
+
+-Контейнерна компонента видет состояния преложения, имеет основной фунционал,с нее делаються запросы в баззу данных,
+передает данные дочерней компоненте на отображения.Это приавильная структура,контейнеры чаще всего являются родителями
+ для компонентов-представлений и обеспечивают связь между представлениями и остальными частями приложения
+
+В контейнерній компоненті ми обьявляємо дві функції - мап стейт ту пропс :
+Контейнер обьвертывает компонент Контактс и стор с Контексту теперь нельзя передать напрямую пропсами в Контактс,контейнер
+ограничивает доступ компонента к Контексту,теперь стейт береться с Контекста сначала в контейнер,потом нужно
+переделывать свойства стейта в пропсы функии mapStateToProps,и потом уже connect отправляет эти пропсы в Контактс .
+contacts_state-название свойства за которым закреплен наш Contacts reducer,инициализация свойства была в store.js
+- это все делаеться для удобности
+без мапстейт ту пропс функции мы б прокидывали все свойства стейта и Action creator вручную:
+<Contact cards={stеte.contacts_state.cards} searchInputValue={state.contacts_state.searchInputValue}
+changeSearchFieldActionCreator={state.contacts_state.searchInputValue} />
+
+і мап діспатч ту пропс:
+МапДиспатчТуПропс берет наш ActionCreator обьвертывает его в колбэк и передает его в дочерний компонент
+let mapDispatchToProps = (dispatch) => {
+    let (2)changeSearchField = (text) => {dispatch(changeSearchFieldActionCreator(text))}
+    return { (1)changeSearchField: (2)changeSearchField }
+}
+1)передаем метод dispatch со стора в контексте которые создает связь между редюсером и екшенКриэйтером
+
+2)let changeSearchField = (text) => {dispatch(changeSearchFieldActionCreator(text))}
+создаем колбек который будет вызываться в контактс  Contacts.js/13/props.changeSearchField(text) и брать новое значение
+это значение передаеться в changeSearchFieldActionCreator(text) и так как экшин и метод диспатч уже связаны dispatch(changeSearchFieldActionCreator(text)
+передача нового текста будет инициализировать старт роботы Диспатч (искать подобное название типа екшина по всем редюсерам)
+потом мы создаем обьект 1)changeSearchField чтобы передать его в Конект хок значения которого будет равно колбеку (2)changeSearchField4
+
+(Ми їх не викликаємо а передаємо як колбек у функцію коннект (хок) ).
+_____________________________________________________________________________________________________________________________________
+Назначение функции connect вытекает из названия: подключи React компонент к Redux store который в Контексте
+Результат работы функции connect - новый присоединенный компонент, который оборачивает переданный компонент Contacts
+ connect(mapStateToProps, mapDispatchToProps)(Contacts)--> (container(component)) функция connect работае только
+  с пропсами и dispatch в него передаються только обьекты
+
+
+
+*/

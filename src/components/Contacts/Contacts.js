@@ -19,7 +19,7 @@ const Contacts = (props) => {
                 <input  onChange={changeSearchField} ref={input} className='search' placeholder="Search" value={props.searchInputValue} />
                 <button className='ok-btn'>Ok</button>
             </div>
-            <div className="list-holder"> 
+            <div className="list-holder">
                 {arrayOfCards}
             </div>
             <div>
@@ -30,3 +30,10 @@ const Contacts = (props) => {
     )
 }
 export default Contacts;
+/*
+value={props.searchInputValue} searchInputValue берем с пропсов переданных сюда с контейнера с помощью конект хока
+в контейнет с помощью контекста в который мы передали стор
+в сторе с помощью КомбайнРедюсерс ми пиривязали к ключу contacts_state редюсер контактс в котором ссылка на стейт и эешинКриейтор
+тоесть это значения береться со стейта контактс
+props.cards так же как и props.searchInputValue
+*/
