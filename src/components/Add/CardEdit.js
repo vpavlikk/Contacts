@@ -13,7 +13,7 @@ class CardEdit extends React.Component {
             ad_number:'',
             company:'',
             email:'',
-            type:'Type',      
+            type:'Type',
         }
     }
 
@@ -21,15 +21,20 @@ class CardEdit extends React.Component {
         let name = event.target.name
         let newValue = event.target.value
         this.setState({
-            [name]: newValue})
-    }   
-    
+            [name]: newValue})//поиск передаваемого ключа в стейте
+    }
+
     onInputClick(){
         let newValue = this.state.inFocus
         this.setState({ inFocus: !newValue })
         console.log(this.state)
-    } 
+    }
+ /*
+this.onInputClick.bind(this) - после bind(this), this перед методом будет указывать на конкретный екземпляр класса, таким образом все this в методе
+ ссылаються на тот же екземпляр и на его стейт (привязивает метод к конкретному экземпляру класса в котором сущесвует свой стейт)
 
+handeleChanges = (event) => { - с помощью стрелочной функции реализован нативный метод реакт в которого уже встроен bind(this)
+ */
     render(){
     return (
         <div>
@@ -39,9 +44,9 @@ class CardEdit extends React.Component {
                 </div>
                 <div>
                     {
-                    this.state.inFocus ? 
+                    this.state.inFocus ?
                     <input onBlur={this.onInputClick.bind(this)} onChange={this.handeleChanges} name='fullname' value={this.state.fullname} className="edt-input" placeholder="Fullname" /> :
-                    <span onClick={this.onInputClick.bind(this)} style={{marginLeft: '30px', marginTop: '30px'}}>{this.state.fullname}</span> 
+                    <span onClick={this.onInputClick.bind(this)} style={{marginLeft: '30px', marginTop: '30px'}}>{this.state.fullname}</span>
                     }
                 </div>
                 <div>
@@ -70,4 +75,3 @@ class CardEdit extends React.Component {
 }
 
 export default CardEdit;
-

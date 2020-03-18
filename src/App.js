@@ -13,8 +13,6 @@ function App() {
       <div className="content-wrapper">
         <Route  path='/view'  render={()=><ContactsContainer />} />
         <Route  path='/edit' render={()=> <CardEdit />}/>
-        
-
       </div>
     </div>
   );
