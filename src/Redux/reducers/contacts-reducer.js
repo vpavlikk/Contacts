@@ -1,3 +1,5 @@
+import { API } from "../../api"
+
 const CHANGE_SEARCH_FIELD = 'CHANGE-SEARCH-FIELD'
 const SET_USERS = 'SET-USERS'
 const CHANGE_CURRENT_PAGE = 'CHANGE-CURRENT-PAGE'
@@ -45,6 +47,14 @@ export const setUsers = (users) => {return {type: SET_USERS, users}}
 export const changeCurrentPage = (page) => {return {type: CHANGE_CURRENT_PAGE, page}}
 export const changeHasNextPageFlag = (hasNextPage) => {return{type: CHANGE_HAS_NEXT_PAGE_FLAG, hasNextPage}}
 // THUNK CREATORS:
+export const getUsersList =  (page,limit,search) => async (dispatch) => {
+    if (!search) { search = "" }
+    let response = await API.getContacts(page,limit,search)
+    dispatch(setUsers(response.results.docs))
+    dispatch(changeCurrentPage(page + 1))
+    dispatch(changeHasNextPageFlag(response.results.hasNextPage))
+}
+
 
 export default contactsReducer;
 

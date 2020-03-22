@@ -13,6 +13,7 @@ router.post(
     ],
     async (req, res) => {
         try {
+            console.log('ping')
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array(), message: 'incorrect credentials' })
@@ -42,6 +43,7 @@ router.post(
     async (req, res) => {
         try {
             const errors = validationResult(req);
+            console.log(errors)
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array(), message: 'incorrect credentials' })
             }
