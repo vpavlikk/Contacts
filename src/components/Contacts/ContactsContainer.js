@@ -44,4 +44,11 @@ let mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps, { changeSearchField, getUsersList })(ContactsContainer);
-
+// getUsers = (page, limit, search) => {
+//        if(!search){search=""}
+//        axios.get(`/api/contacts/?page=${page}&limit=${limit}&search=${search}`).then(response => {
+//            this.props.setUsers(response.data.results.docs)
+//            this.props.changeCurrentPage(page+1)
+//            this.props.changeHasNextPageFlag(response.data.results.hasNextPage)
+//        })
+//    }

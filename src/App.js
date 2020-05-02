@@ -19,7 +19,7 @@ function App() {
           <Route path='/edit' render={() => <CardEdit />} />
           <Route path='/login' component={LoginForm} />
           <Route path='/register' component={RegisterForm} />
-          <Redirect to='/view' />
+          <Redirect to='/view' />//дефолтна компонента яка буде відображуватись завжи першою буде <ContactsContainer/>
         </Switch>
       </div>
     </div>
@@ -27,3 +27,10 @@ function App() {
 }
 
 export default App;
+/*
+render={() => <ContactsContainer {...props} />}-можемо передати пропси
+component={LoginForm}-відмальвоється компонента пропси передати не можна
+Спочатку появляється посилання <NavLink className='login-link' to='/login'>Login in to app</NavLink> на компонент   <Route path='/login' component={LoginForm} />
+відкриває компоненту LoginForm і вже в неї є посилання <NavLink to='/register' >Do not have account? Sign Up!</NavLink> на компоненту
+ <Route path='/register' component={RegisterForm} />
+*/
