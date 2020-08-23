@@ -19,18 +19,6 @@ const LoginForm = () => {
         console.log(loginForm)
         API.login(loginForm.email, loginForm.password)
     }
-    /*useState("") робили на кожну строчку окремо.Тобто окремі свойства emailInput і  passwordInput
-    для зручності створили одне свойства loginForm якому присвоюється обєкт з емейлом та паролем
-    */
-    // let [emailInput, setEmailInput] = useState("")
-    // let [passwordInput, setPasswordInput] = useState("")
-
-    // const onEmailChangeHander = (e) =>{
-    //     setEmailInput(e.target.value)
-    // }
-    // const onPasswordChangeHandler = (e) =>{
-    //     setPasswordInput(e.target.value)
-    // }
     return(
         <>
             <div >

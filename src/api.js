@@ -17,6 +17,10 @@ export let API = {
         const body = {password, email}
         return instance.post('auth/register', body).then(response=>response.data)
     },
+    addContact(fullname,number,additional_number,type,company,email){
+      const body={fullname,number,additional_number,type,company,email}
+      return instance.post('contacts/addNewContact',body).then(response=>response.date)
+    }
 }
 /*
  щоб кожен раз не писати базові параметри для відпраки запиту ми записуємо їх в змінну instance та використовуємо її в подальшому

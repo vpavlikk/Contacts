@@ -18,7 +18,10 @@ const PORT = 8000;
 
 async function start(){
     try{
-        await mongoose.connect('mongodb+srv://kondrashov:12091992ua@cluster0-qjuoj.azure.mongodb.net/coquus-liber?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false} );
+        await mongoose.connect(
+          "mongodb+srv://mydatabase:vladpavlik123098@cluster0.hvadz.mongodb.net/mydatabase?retryWrites=true&w=majority",
+         {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false}
+       );
         app.listen(PORT, ()=>console.log(`App has been started on port  ${PORT}...`));
     }
     catch(e){
@@ -27,3 +30,4 @@ async function start(){
     }
 }
 start();
+// https://downloads.mongodb.org/linux/mongodb-shell-linux-x86_64-ubuntu1804-4.4.0.tgz

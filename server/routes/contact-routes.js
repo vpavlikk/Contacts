@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
             let id = jwt.verify(req.cookies.tokenlogin,'123').userId
             let results = await Contact.paginate({$and: [{user_id: id} , { fullname: { $regex: search, $options: '-i' } }] },
                 { page: page, limit: limit, lean: true });
-            res.status(200).json({ results })            
+            res.status(200).json({ results })
         }
         else {
             res.status(400).json({ message: 'max limit of items per page can\'t exceed 100' })
@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) =>{
+router.post('/addNewContact', async (req, res) =>{
     const user_id = jwt.verify(req.cookies.tokenlogin, '123').userId
     const fullname = req.body.fullname
     const number = req.body.number
@@ -38,7 +38,7 @@ router.post('/', async (req, res) =>{
     res.status(200).json({message: "Contact successfully created"})
 })
 
-router.put('/', async (req,res) => { 
+router.put('/updateContact', async (req,res) => {
     const id = req.body.id
     const fullname = req.body.fullname
     const number = req.body.number
