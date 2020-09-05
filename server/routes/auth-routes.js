@@ -43,7 +43,6 @@ router.post(
     async (req, res) => {
         try {
             const errors = validationResult(req);
-            console.log(errors)
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array(), message: 'incorrect credentials' })
             }
@@ -59,17 +58,17 @@ router.post(
             const token = jwt.sign(
                 { userId: user.id },
                 '123',
-                {expiresIn: '168h'}    
+                {expiresIn: '168h'}
             )
             res.cookie('tokenlogin' ,token, {maxAge: 7*24*60*60*1000}); // 7 days (1000ms *60sec *60min * 24hours *7days)
-            res.json({token, userId: user.id})
-        }  
+            res.json({token, userId: user.id,message:"you have been logged in seccessfuly"})
+        }
         catch (e) {
             res.status(500).json({ message: 'somthing went wrong, try again...  ERROR:  ' + e });
         }
 
     })
-    
+
 
 router.get('/me', async (req, res) => {
     try{

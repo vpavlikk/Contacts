@@ -1,28 +1,51 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header/Header';
-import CardEdit from './components/Add/CardEdit';
+import CardEditContainer from './components/Add/CardEditContainer';
 import ContactsContainer from './components/Contacts/ContactsContainer';
-import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
-import LoginForm from './components/AuthFolder/LoginForm';
-import RegisterForm from './components/AuthFolder/RegisterForms';
+import { Route, Switch, Redirect} from 'react-router-dom';
+import LoginConteiner from './components/AuthFolder/LoginConteiner';
+import RegisterForm from './components/AuthFolder/RegisterForm';
 
-function App() {
 
+function App(props) {
   return (
-    <div className="app-wrapper">
-      <Header />
-      <div style={{margin: '5px auto', width: '150px'}}><NavLink className='login-link' to='/login'>Login in to app</NavLink></div>
-      <div className="content-wrapper">
-        <Switch>
-          <Route path='/view' render={() => <ContactsContainer/>} />
-          <Route path='/edit' render={() => <CardEdit />} />
-          <Route path='/login' component={LoginForm} />
-          <Route path='/register' component={RegisterForm} />
-          <Redirect to='/login' />
-        </Switch>
-      </div>
-    </div>
+    <>
+      { props.isLoggedIn
+        ? (<div className="app-wrapper">
+            <Header />
+            <div className="content-wrapper">
+              <Switch>
+                <Route path='/view' render={() => <ContactsContainer/>} />
+                <Route path='/edit' render={() => <CardEditContainer/>} />
+                <Redirect to='/view' />
+              </Switch>
+            </div>
+          </div>)
+        : (<div className='login-link'>
+            <Switch>
+              <Route path='/login' component={LoginConteiner} />
+              <Route path='/register' component={RegisterForm} />
+              <Redirect to="/login"/>
+            </Switch>
+          </div>)
+        }
+      </>
+
+
+  //   <div className="app-wrapper">
+  //     <Header />
+  //     <div style={{margin: '5px auto', width: '150px'}}><NavLink className='login-link' to='/login'>Login in to app</NavLink></div>
+  //     <div className="content-wrapper">
+  //       <Switch>
+  //         <Route path='/view' render={() => <ContactsContainer/>} />
+  //         <Route path='/edit' render={() => <CardEditContainer />} />
+  //         <Route path='/login' component={LoginForm} />
+  //         <Route path='/register' component={RegisterForm} />
+  //         <Redirect to='/view' />
+  //       </Switch>
+  //     </div>
+  //   </div>
   );
 }
 

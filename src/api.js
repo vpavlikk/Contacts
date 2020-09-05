@@ -11,17 +11,29 @@ export let API = {
     },
     login(email, password){
         const body = {password, email}
-        return instance.post('auth/login', body).then(response=>response.data)
+        return instance.post('auth/login', body).then(
+          response=>alert(response.data.message)
+        )
     },
     register(email, password){
         const body = {password, email}
-        return instance.post('auth/register', body).then(response=>response.data)
+        return instance.post('auth/register', body).then(
+          response=>alert(response.data.message)
+        )
     },
     addContact(fullname,number,additional_number,type,company,email){
       const body={fullname,number,additional_number,type,company,email}
-      return instance.post('contacts/addNewContact',body).then(response=>response.date)
+      return instance.post('contacts/addNewContact',body).then(
+        response=>alert(response.data.message)
+      )
+    },
+    checkIsLoggedIn(){
+      return instance.get('auth/me').then(
+        response=>response.data
+      )
     }
 }
+
 /*
  щоб кожен раз не писати базові параметри для відпраки запиту ми записуємо їх в змінну instance та використовуємо її в подальшому
  baseURL: '/api/'-базове посилання через яке надається доступ до запитів на сервері

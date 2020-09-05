@@ -1,23 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './AuthForm.sass'
 import { NavLink } from 'react-router-dom'
-import { API } from '../../api'
 
-const LoginForm = () => {
-    let [loginForm, setLoginForm] = useState({email:"", password:""})
-    let [passwordToggle, setPassordToggle] = useState(false)//passwordToggle-використовується для passwordToggle?"HIDE":"SHOW" та passwordToggle?"text":"password"
+const LoginForm = (props) => {
     const onEmailChangeHandler = (e) =>{
-        setLoginForm({email: e.target.value, password: loginForm.password})
+      props.setEmail(e.target.value)
     }
     const onPasswordChangeHandler = (e) =>{
-        setLoginForm({password: e.target.value, email: loginForm.email})
+      props.setPassword(e.target.value)
     }
     const onPasswordTypeChange=()=>{
-        setPassordToggle(!passwordToggle)//змінює значення passwordToggle на протележне
+      props.setPasswordToggle(!props.passwordToggle)//змінює значення passwordToggle на протележне
     }
     const useLogin = () => {
-        console.log(loginForm)
-        API.login(loginForm.email, loginForm.password)
+      props.Logining(props.email, props.password)
     }
     return(
         <>
@@ -26,12 +22,12 @@ const LoginForm = () => {
             </div >
             <div>
                 <div>
-                    <input style={{width:'70%'}} type={passwordToggle?"text":"password"}// змінює звьоздочки на пароль який ми вводимо
+                    <input style={{width:'70%'}} type={props.passwordToggle?"text":"password"}// змінює зірки на пароль який ми вводимо
                     onChange={onPasswordChangeHandler}
                     name='password'
                     className='edit-input'
                     placeholder='password'/>
-                    <button onClick={onPasswordTypeChange}>{passwordToggle?"HIDE":"SHOW"}</button>
+                    <button onClick={onPasswordTypeChange}>{props.passwordToggle?"HIDE":"SHOW"}</button>
                 </div>
             </div>
             <div >

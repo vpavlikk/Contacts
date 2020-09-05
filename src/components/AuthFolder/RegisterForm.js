@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import './AuthForm.sass'
 import { NavLink } from 'react-router-dom'
 import {API} from '../../api'

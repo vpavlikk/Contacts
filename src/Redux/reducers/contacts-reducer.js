@@ -57,6 +57,7 @@ export const getUsersList =  (page,limit,search) => async (dispatch) => {
     dispatch(setUsers(response.results.docs))
     dispatch(changeCurrentPage(page + 1))
     dispatch(changeHasNextPageFlag(response.results.hasNextPage))
+
 }
 
 
