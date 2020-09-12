@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
-
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
@@ -11,8 +10,6 @@ app.use(cookieParser())
 app.use(express.json({ extended: true }))
 app.use('/api/contacts', require('./routes/contact-routes'));
 app.use('/api/auth', require('./routes/auth-routes'));
-
-
 
 const PORT = 8000;
 

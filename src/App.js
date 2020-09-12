@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import CardEditContainer from './components/Add/CardEditContainer';
@@ -14,6 +14,9 @@ function App(props) {
       { props.isLoggedIn
         ? (<div className="app-wrapper">
             <Header />
+              <div>
+                <button>Log Out</button>
+              </div>
             <div className="content-wrapper">
               <Switch>
                 <Route path='/view' render={() => <ContactsContainer/>} />
@@ -31,21 +34,6 @@ function App(props) {
           </div>)
         }
       </>
-
-
-  //   <div className="app-wrapper">
-  //     <Header />
-  //     <div style={{margin: '5px auto', width: '150px'}}><NavLink className='login-link' to='/login'>Login in to app</NavLink></div>
-  //     <div className="content-wrapper">
-  //       <Switch>
-  //         <Route path='/view' render={() => <ContactsContainer/>} />
-  //         <Route path='/edit' render={() => <CardEditContainer />} />
-  //         <Route path='/login' component={LoginForm} />
-  //         <Route path='/register' component={RegisterForm} />
-  //         <Redirect to='/view' />
-  //       </Switch>
-  //     </div>
-  //   </div>
   );
 }
 

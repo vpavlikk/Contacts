@@ -31,6 +31,11 @@ export let API = {
       return instance.get('auth/me').then(
         response=>response.data
       )
+    },
+    logOut(){
+      return instance.post('auth/logout').then(
+        response=>alert(response.data.message)
+      )
     }
 }
 

@@ -35,16 +35,20 @@ export const setEmail =(email)=>{ return {type:SET_EMAIL,email} }
 export const setPassword =(password)=>{ return {type:SET_PASSWORD,password} }
 export const setPasswodToggle =(newValue)=>{ return {type:SET_PASSWORD_TOGGEL,newValue} }
 
-//
-// export const isLoggedIn = () => async (dispatch) => {
-//   let response = await API.checkIsLoggedIn()
-//   dispatch(setIsLoggedIn(response.login))
-//   console.log(response.login+" !!!!!!!")
-// }
-
 export const Logining =(email,password)=>async(dispatch)=>{
-  let response = await API.login(email,password)
-  dispatch(setIsLoggedIn(true))
+  await API.login(email,password)
+  await API.checkIsLoggedIn().then(
+    response=>dispatch(setIsLoggedIn(response.login))
+  )
 }
-
+export const IsloggedInPageMount=()=>async(dispatch)=>{
+  await API.checkIsLoggedIn().then(
+    response=>dispatch(setIsLoggedIn(response.login))
+  )
+}
+// export const logOut = ()=>async(dispatch)=>{
+//   await API.logOut().then(
+//     dispatch(setLogOut(false))
+//   )
+// }
 export default LoginReducer;
