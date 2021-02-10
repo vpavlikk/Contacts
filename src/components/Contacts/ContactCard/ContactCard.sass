@@ -1,18 +1,61 @@
 .contact-card
     display: grid
     margin-top: 15px
-    margin-left: 10px
-    margin-right: 10px
+    margin-left: 200px
+    margin-right: 200px
+    margin-bottom: 15px
     border-radius: 20px
     border: 1px solid #b4b4b4
     background-color: white
     grid-template-columns: 70px calc( 100% - 70px )
+
+    span
+      color: black
+
     .ava-wrapper
         img
             margin: 5px 5px 5px 5px
             border-radius: 60px
             width: 60px
             height: 60px
+
+    .content
+      display: grid
+      grid-template-columns: 3fr 1fr
+      grid-template-rows: 30px
+
     .fullname-label
-        font-weight: bold
-    .number-label
+      padding-top: 10px
+      display: inline-grid
+      font-weight: bold
+
+    .edit-label
+      background-color: #80c9f0
+      box-sizing: border-box
+      text-align: center
+      height: 30px
+      padding-top: 5px
+      margin-top: 10px
+      border-radius: 20px
+      justify-self: end
+      width: 70px
+      a:link
+        text-decoration: none
+      &:hover
+          background-color: #63bded
+          color: #63bded
+
+    .del-btn
+      justify-self: center
+      width: 70px
+      padding-top: 10px
+      margin-right: 10px
+      display: inline-grid
+      &:hover
+        background-color: #63bded
+        color: #63bded
+
+    .func
+      display: grid
+      grid-template-columns: 1fr 1fr
+      grid-template-rows: 30px

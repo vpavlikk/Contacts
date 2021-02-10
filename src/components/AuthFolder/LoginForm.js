@@ -26,14 +26,14 @@ const LoginForm = (props) => {
                     onChange={onPasswordChangeHandler}
                     name='password'
                     className='edit-input'
-                    placeholder='password'/>
-                    <button onClick={onPasswordTypeChange}>{props.passwordToggle?"HIDE":"SHOW"}</button>
+                    placeholder='Password'/>
+                    <button style={{width:'20%'}} onClick={onPasswordTypeChange}>{props.passwordToggle?"HIDE":"SHOW"}</button>
                 </div>
             </div>
             <div >
                 <button onClick={useLogin} className='sbmt-btn'>Login</button>
             </div>
-            <div  style={{textAlign:'center'}}><NavLink to='/register' >Do not have account? Sign Up!</NavLink></div>
+            <div  className='to-sign-up'><NavLink to='/register' ><span style={{color:"black"}}>Do not have account? Sign Up!</span></NavLink></div>
         </>
     )
 }

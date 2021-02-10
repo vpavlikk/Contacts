@@ -1,24 +1,17 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { changeSearchField, getUsersList} from './../../Redux/reducers/contacts-reducer'
+import { changeSearchField, getFirstContactsList,getContacts,deleteContact,updateContact} from './../../Redux/reducers/contacts-reducer'
 import Contacts from './Contacts';
 
 class ContactsContainer extends React.Component {
-
-    componentDidMount() {
-        this.getUsers(this.props.currentPage, 5);
-    }
-    getUsers =  (page, limit, search) => {
-        this.props.getUsersList(page,limit,search)
-    }
-
-    render() {
-        return (
-            <Contacts {...this.props} getUsers={this.getUsers} />
-        )
-    }
-
-
+  componentDidMount() {
+    this.props.getFirstContactsList(this.props.firstPage, 5);
+  }
+  render() {
+    return (
+      <Contacts {...this.props} />
+    )
+  }
 }
 
 
@@ -28,8 +21,11 @@ let mapStateToProps = (state) => {
     return {
         searchInputValue: state.contacts_state.searchInputValue,
         cards: state.contacts_state.cards,
-        currentPage: state.contacts_state.currentPage,
-        hasNextPage: state.contacts_state.hasNextPage
+        firstPage: state.contacts_state.firstPage,
+        nextPage: state.contacts_state.nextPage,
+        hasNextPage: state.contacts_state.hasNextPage,
+        hasPrevPage: state.contacts_state.hasPrevPage,
+        totalPages: state.contacts_state.totalPages
     }
 }
 // let mapDispatchToProps = (dispatch) => {
@@ -40,10 +36,7 @@ let mapStateToProps = (state) => {
 
 // }
 
-
-
-
-export default connect(mapStateToProps, { changeSearchField, getUsersList })(ContactsContainer);
+export default connect(mapStateToProps, { changeSearchField, getFirstContactsList,getContacts,deleteContact,updateContact })(ContactsContainer);
 // getUsers = (page, limit, search) => {
 //        if(!search){search=""}
 //        axios.get(`/api/contacts/?page=${page}&limit=${limit}&search=${search}`).then(response => {

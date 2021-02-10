@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import LoginForm from './LoginForm'
-import {setEmail,setPassword,setPasswodToggle,Logining} from '../../Redux/reducers/login-reducer'
+import {setEmail,setPassword,setPasswordToggle,Logining} from '../../Redux/reducers/login-reducer'
 
 
 
@@ -20,4 +20,4 @@ let mapStateToProps =(state)=>{
   }
 }
 
-export default connect(mapStateToProps,{setEmail,setPassword,setPasswodToggle,Logining})(LoginConteiner)
+export default connect(mapStateToProps,{setEmail,setPassword,setPasswordToggle,Logining})(LoginConteiner)

@@ -35,7 +35,7 @@ let RegisterForm = () => {
                 <button  onClick={onSubmitHandler}className="sbmt-btn">Sign Up</button>
             </div>
             <div style={{textAlign: "center"}}>
-              <NavLink to='/login'>Already have account? Login!</NavLink>
+              <NavLink style={{color:"black"}} to='/login'>Already have account? Login!</NavLink>
             </div>
         </>
     )

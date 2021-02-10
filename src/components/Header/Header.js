@@ -7,8 +7,20 @@ const Header = () => {
 
     return(
     <header  className="header">
-        <div className={`menu-item ${location.pathname==='/view'?'selected':null}`}><NavLink to='/view'>CONTACTS</NavLink></div>
-        <div className={`menu-item ${location.pathname==='/edit'?'selected':null}`}><NavLink to='/edit'>ADD NEW</NavLink></div>
+        <div className={`menu-item ${location.pathname==='/contacts'?'selected':null}`}>
+          <NavLink to='/contacts'>
+            <span>
+              CONTACTS
+            </span>
+          </NavLink>
+        </div>
+        <div className={`menu-item ${location.pathname==='/edit'?'selected':null}`}>
+          <NavLink to='/edit'>
+            <span>
+              ADD NEW
+            </span>
+          </NavLink>
+        </div>
     </header>)
 }
 

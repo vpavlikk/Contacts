@@ -7,12 +7,14 @@ let instance = axios.create({
 
 export let API = {
     getContacts(page, limit, search){
-        return instance.get(`contacts/?page=${page}&limit=${limit}&search=${search}`).then(response => response.data)
+        return instance.get(`contacts/?page=${page}&limit=${limit}&search=${search}`).then(
+          response => response.data
+        )
     },
     login(email, password){
         const body = {password, email}
         return instance.post('auth/login', body).then(
-          response=>alert(response.data.message)
+          response=>response.data
         )
     },
     register(email, password){
@@ -21,8 +23,8 @@ export let API = {
           response=>alert(response.data.message)
         )
     },
-    addContact(fullname,number,additional_number,type,company,email){
-      const body={fullname,number,additional_number,type,company,email}
+    addContact(cardEditFormDataObject){
+      const body=cardEditFormDataObject
       return instance.post('contacts/addNewContact',body).then(
         response=>alert(response.data.message)
       )
@@ -34,7 +36,18 @@ export let API = {
     },
     logOut(){
       return instance.post('auth/logout').then(
-        response=>alert(response.data.message)
+        response=>response.data
+      )
+    },
+    deleteContact(id){
+      return instance.delete(`contacts/deleteContact/?id=${id}`).then(
+        response=>response.data
+      )
+    },
+    updateContact(contactChangeFormDataObject){
+      const body=contactChangeFormDataObject
+      return instance.put('contacts/updateContact',body).then(
+        response=>response.data
       )
     }
 }

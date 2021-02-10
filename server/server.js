@@ -17,7 +17,7 @@ async function start(){
     try{
         await mongoose.connect(
           "mongodb+srv://mydatabase:vladpavlik123098@cluster0.hvadz.mongodb.net/mydatabase?retryWrites=true&w=majority",
-         {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false}
+         {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: true}
        );
         app.listen(PORT, ()=>console.log(`App has been started on port  ${PORT}...`));
     }

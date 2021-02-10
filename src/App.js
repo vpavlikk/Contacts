@@ -1,27 +1,41 @@
 import React,{useEffect} from 'react';
 import './App.css';
 import Header from './components/Header/Header';
-import CardEditContainer from './components/Add/CardEditContainer';
+import CardAddingContainer from './components/Add/CardAddingContainer';
 import ContactsContainer from './components/Contacts/ContactsContainer';
 import { Route, Switch, Redirect} from 'react-router-dom';
 import LoginConteiner from './components/AuthFolder/LoginConteiner';
 import RegisterForm from './components/AuthFolder/RegisterForm';
+import ContactChangeConteiner from './components/ContactChange/ContactChangeConteiner';
+import ContactInfo from './components/ContactInfo/ContactInfo';
 
+const App=(props)=>{
+  useEffect(()=>{
+    props.IsloggedInPageMount()
+    return () => {
+      props.LogOut()
+    };
+  },[])
 
-function App(props) {
+  const logOut =()=>{
+    props.LogOut()
+  }
   return (
     <>
       { props.isLoggedIn
         ? (<div className="app-wrapper">
             <Header />
-              <div>
-                <button>Log Out</button>
+              <div className="app-item">
+                <p className="app-email">{props.email}</p>
+                <button className="btn-logout" onClick={logOut}>Log Out</button>
               </div>
             <div className="content-wrapper">
               <Switch>
-                <Route path='/view' render={() => <ContactsContainer/>} />
-                <Route path='/edit' render={() => <CardEditContainer/>} />
-                <Redirect to='/view' />
+                <Route path='/contacts' render={() => <ContactsContainer/>} />
+                <Route path='/edit' render={() => <CardAddingContainer/>} />
+                <Route path='/contact-change' render={()=><ContactChangeConteiner/>}/>
+                <Route path='/contact-info' render={()=><ContactInfo/>}/>
+                <Redirect to='/contacts'/>
               </Switch>
             </div>
           </div>)

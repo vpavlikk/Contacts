@@ -4,7 +4,6 @@ const router = Router();
 const jwt = require('jsonwebtoken')
 const {Types} = require('mongoose');
 
-
 router.get('/', async (req, res) => {
     const search = req.query.search != null ? req.query.search : "";
     const page = req.query.page != null ? req.query.page : 1;
@@ -29,30 +28,44 @@ router.post('/addNewContact', async (req, res) =>{
     const user_id = jwt.verify(req.cookies.tokenlogin, '123').userId
     const fullname = req.body.fullname
     const number = req.body.number
-    const additional_number = req.body.adnmb
+    const additional_number = req.body.add_number
     const type = req.body.type
     const company = req.body.company
     const email = req.body.email
     let contact = new Contact({user_id, fullname, number, additional_number, type, company, email})
     contact.save()
-    res.status(200).json({message: "Contact successfully created"})
+    res.status(200).json({id: contact._id, message: "Contact successfully created"})
 })
 
 router.put('/updateContact', async (req,res) => {
     const id = req.body.id
     const fullname = req.body.fullname
     const number = req.body.number
-    const additional_number = req.body.adnmb
+    const additional_number = req.body.add_number
     const type = req.body.type
     const company = req.body.company
     const email = req.body.email
     let contact = await Contact.findOneAndUpdate({_id: id},{fullname: fullname, number:number, additional_number: additional_number, type: type, company: company, email: email})
     contact.save()
     res.status(200).json({message: "user successfully updated"})
-} )
+})
 
-
-
-
+  router.delete('/deleteContact', async (req, res) => {
+    try{
+      let id = jwt.verify(req.cookies.tokenlogin,'123').userId
+      let contactid = req.query.id
+      Contact.deleteOne({user_id: id, _id: contactid}, async (err)=>{
+           if(err){
+                  res.status(500).json({err})
+          }
+        else{
+          res.status(200).json({message: "successfully removed"});
+        }
+      })
+    }
+    catch (e){
+      res.status(500).json({err: e})
+    }
+  })
 
 module.exports = router;
