@@ -1,61 +1,152 @@
 .contact-card
     display: grid
+    grid-template-columns: 115px 3fr 1fr
+    grid-template-rows: 65px
     margin-top: 15px
-    margin-left: 200px
-    margin-right: 200px
-    margin-bottom: 15px
+    width: 60vw
+    height: 70px
     border-radius: 20px
     border: 1px solid #b4b4b4
     background-color: white
-    grid-template-columns: 70px calc( 100% - 70px )
+    grid-template-areas: "ava info func"
+    transition: all 1s ease-out
 
-    span
-      color: black
+.ava-wrapper
+    display: grid
+    grid-area: ava
+    img
+        margin: 5px 5px 5px 5px
+        max-width: 106px
+        border-radius: 60px
+        width: 106px
+        height: 60px
+        &:hover
+            box-shadow: 0 0 5px #63bded
 
-    .ava-wrapper
-        img
-            margin: 5px 5px 5px 5px
-            border-radius: 60px
-            width: 60px
-            height: 60px
+.info-holder
+    display: grid
+    grid-area: info
+    grid-template-columns: 1fr
+    grid-template-rows: 20px 20px
+    margin-top: 5px
+.fullname-label
+    display: grid
+    font-weight: bold
+.number-label
+    display: grid
+    font-weight: lighter
 
-    .content
-      display: grid
-      grid-template-columns: 3fr 1fr
-      grid-template-rows: 30px
-
-    .fullname-label
-      padding-top: 10px
-      display: inline-grid
-      font-weight: bold
-
-    .edit-label
-      background-color: #80c9f0
-      box-sizing: border-box
-      text-align: center
-      height: 30px
-      padding-top: 5px
-      margin-top: 10px
-      border-radius: 20px
-      justify-self: end
-      width: 70px
-      a:link
+.func
+    display: grid
+    grid-area: func
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: 30px
+.edit-btn
+    color: black
+    background-color: #80c9f0
+    box-sizing: border-box
+    text-align: center
+    height: 30px
+    padding-top: 6px
+    margin-top: 10px
+    margin-right: 5px
+    border-radius: 20px
+    width: 70px
+    a:link
         text-decoration: none
-      &:hover
-          background-color: #63bded
-          color: #63bded
+    &:hover
+        background: #63bded
+        box-shadow: 0 0 5px #63bded
+    &:active
+        padding-top: 9px
+.del-btn
+    color: black
+    background-color: #80c9f0
+    box-sizing: border-box
+    text-align: center
+    margin-top: 10px
+    margin-right: 10px
+    border-radius: 20px
+    &:hover
+        border: 2px solid #63bded
+        background: #63bded
+        box-shadow: 0 0 5px #63bded
+    &:focus
+      outline: none
+    &:active
+        padding-top: 6px
 
-    .del-btn
-      justify-self: center
-      width: 70px
-      padding-top: 10px
-      margin-right: 10px
-      display: inline-grid
-      &:hover
-        background-color: #63bded
-        color: #63bded
 
-    .func
-      display: grid
-      grid-template-columns: 1fr 1fr
-      grid-template-rows: 30px
+@media screen and (max-width: 710px)
+  .contact-card
+      min-width: 280px
+      grid-template-columns: 115px 1fr
+      grid-template-rows: 40px 40px
+      margin-left: 250px
+      margin-right: 250px
+      height: 80px
+      grid-template-areas: "ava info" ".   func"
+
+  .ava-wrapper
+      img
+          margin: 10px 5px 5px 5px
+
+  .info-holder
+      margin-top: 5px
+  .fullname-label
+      padding-top: 0
+  .number-label
+      padding-top: 0
+
+  .func
+      margin-top: 5px
+  .edit-btn
+      width: auto
+      margin-top: 0
+  .del-btn
+      margin-top: 0
+
+
+@media screen and (max-width: 285px)
+  .contact-card
+      min-width: 163px
+      grid-template-columns: 100%
+      grid-template-rows: 65px 40px 55px
+      grid-template-areas: "ava" "info" "func"
+      height: 160px
+
+  .ava-wrapper
+      justify-content: center
+      img
+          margin-top: 5px
+          margin-bottom: 0
+
+  .fullname-label
+      justify-content: center
+  .number-label
+      justify-content: center
+
+  .func
+      grid-template-columns: 1fr
+      grid-template-rows: 25px 25px
+      justify-content: center
+  .edit-btn
+      position: relative
+      left: 20%
+      margin-right: 0
+      width: 60%
+      height: 20px
+      align-items: center
+      padding-top: 2px
+      &:active
+          padding-top: 3px
+
+  .del-btn
+      position: relative
+      left: 20%
+      margin-right: 0
+      width: 60%
+      height: 20px
+      padding-top: 0
+      &:active
+          padding-top: 1px

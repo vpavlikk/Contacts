@@ -1,20 +1,150 @@
 .header
-    display: grid
-    grid-template-columns: 50% 50%
+    display: flex
+    flex-direction: row
     height: 40px
+    align-items: center
+    padding: 10px 5px 10px 5px
+    background-color: white
+    border: 1px solid #c0c0c0
+    border-radius: 20px
+    margin-left: 5px
+    margin-right: 5px
+    margin-top: 2px
+    transition: all 1s ease-out
     span
       color: black
-.menu-item
+
+
+.nav-btn-container
+    display: flex
+    flex-direction: row
+    width: 50%
+    height: 100%
+.nav-btn-contacts
+    display: flex
+    height: 100%
+    align-items: center
+    justify-content: center
+    width: 100%
     background-color: #80c9f0
     box-sizing: border-box
     text-align: center
-    padding-top: 10px
-    padding-bottom: 5px
     border-radius: 20px
+    margin-right: 1vw
+    min-width: 100px
     a:link
       text-decoration: none
     &:hover
         background-color: #63bded
         color: #63bded
+    &:active
+      padding-top: 4px
+.nav-btn-add
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100%
+    height: 100%
+    background-color: #80c9f0
+    box-sizing: border-box
+    text-align: center
+    border-radius: 20px
+    margin-left: 1vw
+    min-width: 100px
+    a:link
+      text-decoration: none
+    &:hover
+        background-color: #63bded
+        color: #63bded
+    &:active
+      padding-top: 4px
 .selected
     border-bottom: 3px solid blue
+
+
+.email-logout-container
+    display: flex
+    flex-direction: row
+    width: 50%
+    align-items: flex-end
+    justify-content: flex-end
+.email-holder
+    display: flex
+    align-items: center
+    justify-content: center
+    margin-right: 10px
+.btn-logout
+    display: flex
+    border-radius: 20px
+    align-items: center
+    justify-content: center
+    margin-bottom: 10px
+    &:hover
+        border: 2px solid #63bded
+        background: #63bded
+        box-shadow: 0 0 5px #63bded
+    &:focus
+        outline: none
+    &:active
+      padding-top: 4px
+
+
+// change right side
+@media screen and (max-width: 421px)
+  .email-logout-container
+    flex-direction: column
+  .email-holder
+    margin-bottom: 0
+    margin-top: 10px
+    margin-right: 5px
+  .btn-logout
+    margin-right: 5px
+    height: 4vh
+
+//change left side
+@media screen and (max-width: 348px)
+  .header
+      height: 55px
+
+  .nav-btn-container
+      flex-direction: column
+  .nav-btn-contacts
+      height: 25px
+      margin-bottom: 5px
+      margin-right: 0
+      &:active
+          padding-top: 2px
+  .nav-btn-add
+      height: 25px
+      margin-left: 0
+      &:active
+          padding-top: 2px
+
+  .email-holder
+    margin-bottom: 5px
+    margin-top: 0
+  .btn-logout
+      margin-bottom: 0
+
+// centered left and right side
+@media screen and (max-width: 255px)
+  .header
+      height: 110px
+      flex-direction: column
+
+  .nav-btn-container
+      height: 50%
+      align-items: center
+
+
+  .email-logout-container
+      align-items: center
+  .email-holder
+      margin-bottom: 0
+      margin-right: 0
+      margin-top: 5px
+      width: 100%
+  .btn-logout
+      margin-right: 0
+      margin-top: 5px
+      min-width: 48px

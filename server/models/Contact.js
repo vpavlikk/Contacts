@@ -9,8 +9,8 @@ const schema = new Schema ({
     additional_number: {type: String},
     type: {type: String},
     img: {type: String},
-    company: {type: String}
-
+    company: {type: String},
+    ava_src: {type: String}
 });
 schema.plugin(mongoosePaginate);
 

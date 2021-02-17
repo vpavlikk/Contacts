@@ -13,7 +13,6 @@ router.post(
     ],
     async (req, res) => {
         try {
-            console.log('ping')
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array(), message: 'incorrect credentials' })
@@ -61,7 +60,7 @@ router.post(
                 {expiresIn: '168h'}
             )
             res.cookie('tokenlogin' ,token, {maxAge: 7*24*60*60*1000}); // 7 days (1000ms *60sec *60min * 24hours *7days)
-            res.json({token, userId: user.id,message:"you have been logged in seccessfuly"})
+            res.json({token,email: user.email, login: true, userId: user.id,message:"you have been logged in seccessfuly"})
         }
         catch (e) {
             res.status(500).json({ message: 'somthing went wrong, try again...  ERROR:  ' + e });
@@ -69,22 +68,24 @@ router.post(
 
     })
 
-
 router.get('/me', async (req, res) => {
     try{
         let resCookie = req.cookies.tokenlogin;
-        if (!resCookie){return res.status(200).json({message: "Token is empty, are u sure that user logged in?"})}
+        if (!resCookie){
+          return res.status(200).json({login: false,message: "Token is empty, are u sure that user logged in?"})
+        }
         let token = jwt.verify(resCookie, '123');
         let user = await User.findOne({ _id: token.userId }).select('-password');
         res.status(201).json({login: true, items:{id: token.userId, email: user.email, token: req.cookies.tokenlogin}})
-}
+      }
     catch(e){
         res.status(500).json({message: 'Something went wrong, try again... EROR  '+ e})
         console.log("ERROR: ",e)
     }
 })
+
 router.post('/logout', async (req, res)=>{
-    res.clearCookie('tokenlogin').json({message: "Logged out succesfully"})
+    res.clearCookie('tokenlogin').json({login: false,message: "Logged out succesfully"})
 })
 
 module.exports = router;
