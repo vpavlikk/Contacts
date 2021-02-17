@@ -4,7 +4,6 @@ import App from './App'
 import {IsloggedInPageMount,LogOut} from './Redux/reducers/login-reducer'
 
 const AppConteiner = (props) =>{
-
   return(
     <App {...props}/>
   )
@@ -13,7 +12,7 @@ const AppConteiner = (props) =>{
 let mapStateToProps =(state)=>{
   return{
     isLoggedIn: state.login_state.isLoggedIn,
-    email: state.login_state.email
+    validEmail: state.login_state.validEmail
   }
 }
 

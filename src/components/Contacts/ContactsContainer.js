@@ -1,47 +1,43 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { changeSearchField, getFirstContactsList,getContacts,deleteContact,updateContact} from './../../Redux/reducers/contacts-reducer'
+import {getContacts,deleteContact,findContacts} from './../../Redux/reducers/contacts-reducer'
 import Contacts from './Contacts';
 
 class ContactsContainer extends React.Component {
+  shouldComponentUpdate(nextProps, nextState){
+    console.log(nextProps===this.props)
+    return true
+  }
   componentDidMount() {
-    this.props.getFirstContactsList(this.props.firstPage, 5);
+    this.props.getContacts(this.props.currPage, 5);
+    // getUsers = (page, limit, search) => {
+    //        if(!search){search=""}
+    //        axios.get(`/api/contacts/?page=${page}&limit=${limit}&search=${search}`).then(response => {
+    //            this.props.setUsers(response.data.results.docs)
+    //            this.props.changeCurrentPage(page+1)
+    //            this.props.changeHasNextPageFlag(response.data.results.hasNextPage)
+    //        })
+    //    }
   }
   render() {
+    console.log("render ContactsContainer")
     return (
       <Contacts {...this.props} />
     )
   }
 }
 
-
-
-
 let mapStateToProps = (state) => {
     return {
-        searchInputValue: state.contacts_state.searchInputValue,
         cards: state.contacts_state.cards,
-        firstPage: state.contacts_state.firstPage,
+        currPage: state.contacts_state.currPage,
         nextPage: state.contacts_state.nextPage,
+        prevPage: state.contacts_state.prevPage,
         hasNextPage: state.contacts_state.hasNextPage,
         hasPrevPage: state.contacts_state.hasPrevPage,
-        totalPages: state.contacts_state.totalPages
+        totalPages: state.contacts_state.totalPages,
+        ifActiveSearch: state.contacts_state.ifActiveSearch
     }
 }
-// let mapDispatchToProps = (dispatch) => {
-//     let changeSearchField = (text) => {dispatch(changeSearchFieldActionCreator(text))}
-//     let setUsers = (users) =>{dispatch(setUsers(users))};
-//     return {
-//         changeSearchField: changeSearchField    }
 
-// }
-
-export default connect(mapStateToProps, { changeSearchField, getFirstContactsList,getContacts,deleteContact,updateContact })(ContactsContainer);
-// getUsers = (page, limit, search) => {
-//        if(!search){search=""}
-//        axios.get(`/api/contacts/?page=${page}&limit=${limit}&search=${search}`).then(response => {
-//            this.props.setUsers(response.data.results.docs)
-//            this.props.changeCurrentPage(page+1)
-//            this.props.changeHasNextPageFlag(response.data.results.hasNextPage)
-//        })
-//    }
+export default connect( mapStateToProps, {getContacts,deleteContact,findContacts})(ContactsContainer);

@@ -2,52 +2,60 @@ import * as axios from "axios"
 
 let instance = axios.create({
     baseURL: '/api/',
-    headers: {'Content-Type': 'application/json'}
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
   })
-
+// console.log(instance.defaults.baseURL);
 export let API = {
-    getContacts(page, limit, search){
-        return instance.get(`contacts/?page=${page}&limit=${limit}&search=${search}`).then(
-          response => response.data
+    login( email, password ) {
+        const body = { password, email }
+        return instance.post( 'auth/login', body ).then(
+          response => response
         )
     },
-    login(email, password){
-        const body = {password, email}
-        return instance.post('auth/login', body).then(
-          response=>response.data
+    register( email, password ) {
+        const body = { password, email }
+        return instance.post( 'auth/register', body ).then(
+          response => response
         )
     },
-    register(email, password){
-        const body = {password, email}
-        return instance.post('auth/register', body).then(
-          response=>alert(response.data.message)
-        )
-    },
-    addContact(cardEditFormDataObject){
-      const body=cardEditFormDataObject
-      return instance.post('contacts/addNewContact',body).then(
-        response=>alert(response.data.message)
+    addContact( cardEditFormDataObject ) {
+      const body = cardEditFormDataObject
+      return instance.post( 'contacts/addNewContact', body ).then(
+        response => response.data
       )
     },
-    checkIsLoggedIn(){
-      return instance.get('auth/me').then(
-        response=>response.data
+    checkIsLoggedIn() {
+      return instance.get( 'auth/me' ).then(
+        response => response.data
       )
     },
     logOut(){
-      return instance.post('auth/logout').then(
-        response=>response.data
+      return instance.post( 'auth/logout' ).then(
+        response => response.data
       )
     },
-    deleteContact(id){
-      return instance.delete(`contacts/deleteContact/?id=${id}`).then(
-        response=>response.data
+    getContacts( page,limit ) {
+        return instance.get( `contacts/?page=${page}&limit=${limit}` ).then(
+          response => response.data
+        )
+    },
+    findContacts( search ) {
+        return instance.get( `contacts/?search=${search}` ).then(
+          response => response.data
+        )
+    },
+    deleteContact( id ) {
+      return instance.delete( `contacts/deleteContact/?id=${id}` ).then(
+        response => response.data
       )
     },
-    updateContact(contactChangeFormDataObject){
+    updateContact( contactChangeFormDataObject ) {
       const body=contactChangeFormDataObject
-      return instance.put('contacts/updateContact',body).then(
-        response=>response.data
+      return instance.put( 'contacts/updateContact', body ).then(
+        response => response.data
       )
     }
 }

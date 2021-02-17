@@ -1,28 +1,91 @@
-.ava-holder-editpage
-    position: relative
-    width: 100vw
-    height: 25vh
-    img
-        position: absolute
-        width: 100%
-        max-width: 500px
-        height: 25vh
-        top: 50%
-        left: 50%
-        transform: translate(-50%, -50%)
-        object-fit: cover
-.edt-input
+.add-page
+    display: flex
+    flex-direction: column
+    margin-top: 10px
+
+.ava-holder
+    display: block
+    text-align: center
+.contact-add-ava
+    max-width: 316px
+    height: 40vh
+    width: 80vw
+    border-radius: 30%
+    border: 3px solid #63bded
+    box-shadow: 0 0 5px #63bded
+.on-drag-start-add
+    box-shadow: 0 0 20px #63bded
+@media screen and (max-width: 345px)
+    .contact-add-ava
+        height: 80vw
+
+.input-field-block-add
+    display: block
+    width: 50%
+    margin-top: 10px
+    padding-left: 5px
+    align-self: center
+    max-width: 500px
+    min-width: 135px
+
+.input-name-label-add
+    display: flex
+    font-size: 13px
+    padding-left: 10px
+    width: 50%
+    align-self: center
+    color: #5F9EA0
+
+.input-field-add
+    display: flex
+    height: 30px
     box-sizing: border-box
     padding-left: 10px
-    width: 90%
-    margin-top: 20px
-    margin-left: 5%
-    height: 30px
-.sbmt-btn
-    width: 90%
+    width: 100%
+    align-self: center
+    border: 2px solid #c0c0c0
+    border-radius: 20px
+    color: black
+    &:focus
+      outline: none
+      border: 1px solid #63bded
+      box-shadow: 0 0 5px #63bded
+      background-color: white
+
+.errors-label-add
+    display: flex
+    font-size: 13px
+    padding-left: 25px
+    margin-top: 5px
     font-weight: bold
+    width: 50%
+    align-self: center
+    color: #700
+    max-width: 500px
+    min-width: 135px
+
+.sbmt-block
+    display: flex
+    justify-content: center
+    color: black
     height: 30px
-    background: linear-gradient(to top, #8fcff1, #80c9f0)
-    border: 2px solid #73c2ee
-    margin-top: 30px
-    margin-left: 5%
+    margin-top: 15px
+    margin-bottom: 10px
+.sbmt
+    color: black
+    max-width: 130px
+    margin-left: 5px
+    margin-right: 5px
+    background-color: #80c9f0
+    box-sizing: border-box
+    border-radius: 20px
+    width: 20%
+    min-width: 65px
+    &:hover
+      border: 2px solid #63bded
+      background: #63bded
+      box-shadow: 0 0 5px #63bded
+    &:focus
+      outline: none
+    &:active
+      padding-top: 4px

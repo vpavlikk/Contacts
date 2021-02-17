@@ -11,8 +11,19 @@ let reducers = combineReducers({
     form: formReducer,
     login_state: loginReducer
 })
-
+console.log(reducers)
+// combineReducers возвращяет обьект который и будет нашим store,внутри возврашяемого обьекта сохраняються свойства в которых записаны ссылки на отдельные редусеры,когда идет обращения к
+// store combineReducers каждый раз срабатыает
 let store = createStore (reducers, applyMiddleware(thunk))
 window.store = store;
 
 export default store;
+
+// порядок роботы
+// <Provider store={store}>
+// let store = createStore (reducers, applyMiddleware(thunk))
+// combineReducers
+// диспатч по редюсерам
+// все редюсеры возвращяют дефолтные стейты
+// тригериться конект подписанный на стор изменения
+// данные через редакс контекст попадают в мапстейт ту пропс вызванный конектом
