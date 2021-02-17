@@ -1,18 +1,26 @@
-import React from 'react'
+import React, {useState} from 'react'
 import CardAddingReduxForm from './CardAdding'
 import { connect } from "react-redux";
-import {addContact} from './../../Redux/reducers/contacts-reducer'
+import { addContact } from './../../Redux/reducers/contacts-reducer'
 
-const CardAddingContainer=(props)=> {
+const CardAddingContainer = ( props ) => {
+  const [ava_src, setAvaSrc] = useState(props.default_ava_src)
   const submit = (cardAddingFormDataObject) => {
+    cardAddingFormDataObject.ava_src = ava_src
     props.addContact(cardAddingFormDataObject)
   }
     return (
-    <CardAddingReduxForm onSubmit={submit} />
+      <CardAddingReduxForm ava_src={ava_src} setAvaSrc={setAvaSrc} onSubmit={submit} />
     )
 }
 
-export default connect(null,{addContact})(CardAddingContainer)
+let mapStateToProps = (state) => {
+  return {
+    default_ava_src: state.contacts_state.default_ava_src
+  }
+}
+
+export default connect(mapStateToProps,{addContact})(CardAddingContainer)
 
 // import React from "react"
 // import { connect } from "react-redux";

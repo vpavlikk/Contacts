@@ -2,8 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import LoginForm from './LoginForm'
 import {setEmail,setPassword,setPasswordToggle,Logining} from '../../Redux/reducers/login-reducer'
-
-
+import {getEmail, getPassword, getPasswordToggle} from '../../Redux/reducers/login-selectors'
 
 const LoginConteiner =(props)=>{
   return(
@@ -14,9 +13,9 @@ const LoginConteiner =(props)=>{
 
 let mapStateToProps =(state)=>{
   return{
-    email:state.login_state.email,
-    password:state.login_state.password,
-    passwordToggle:state.login_state.passwordToggle
+    email: getEmail(state),
+    password: getPassword(state),
+    passwordToggle: getPasswordToggle(state)
   }
 }
 

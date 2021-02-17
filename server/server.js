@@ -4,12 +4,14 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
 app.use(cookieParser())
 app.use(express.json({ extended: true }))
 app.use('/api/contacts', require('./routes/contact-routes'));
 app.use('/api/auth', require('./routes/auth-routes'));
+
+
 
 const PORT = 8000;
 

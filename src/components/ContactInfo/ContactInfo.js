@@ -1,40 +1,41 @@
 import React from 'react'
 import "./ContactInfo.sass"
-import ava from "./ava.png"
-import { useLocation,NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-let ContactInfo =()=> {
-  let location = useLocation();
+let ContactInfo =(props)=> {
     return(
-         <div>
-            <div className="ava-holder-editpage">
-              <img src={ava} alt=""/>
+         <div className="info-block">
+
+            <div className="ava">
+              <img className="contact-info-ava" src={props.location.aboutProps.ava_src} alt=""/>
             </div>
             <div>
-              <lable>FULLNAME</lable>
-              <p className="info">{location.aboutProps.fullname}</p>
+              <label className="label-info">FULLNAME</label>
+              <p className="info">{props.match.params.fullname}</p>
             </div>
             <div>
-              <lable>NUMBER</lable>
-              <p className="info">{location.aboutProps.number}</p>
+              <label className="label-info">NUMBER</label>
+              <p className="info">{props.location.aboutProps.number}</p>
             </div>
             <div>
-              <lable>ADDITIONAL NUMBER</lable>
-              <p className="info">{location.aboutProps.add_number}</p>
+              <label className="label-info">ADDITIONAL NUMBER</label>
+              <p className="info">{props.location.aboutProps.add_number}</p>
             </div>
             <div>
-              <lable>COMPANY</lable>
-              <p className="info">{location.aboutProps.company}</p>
+              <label className="label-info">COMPANY</label>
+              <p className="info">{props.location.aboutProps.company}</p>
             </div>
             <div>
-              <lable>EMAIL</lable>
-              <p className="info">{location.aboutProps.email}</p>
+              <label className="label-info">EMAIL</label>
+              <p className="info">{props.location.aboutProps.email}</p>
             </div>
             <div>
-              <lable>TYPE</lable>
-              <p className="info">{location.aboutProps.type}</p>
+              <label className="label-info">TYPE</label>
+              <p className="info">{props.location.aboutProps.type}</p>
             </div>
-            <NavLink className="back-btn" to='/contacts'><span>Back</span></NavLink>
+            <div className="back-btn-block">
+              <NavLink className="back-btn" to='/contacts'>Back</NavLink>
+            </div>
           </div>
     )
 }
