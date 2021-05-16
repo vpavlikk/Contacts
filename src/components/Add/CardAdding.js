@@ -1,48 +1,136 @@
 import React from 'react'
 import "./CardAdding.sass"
-import ava from "./ava.png"
 import { Field, reduxForm } from 'redux-form'
 
-let CardAdding =(props)=> {
+function validate (values) {
+  const errors = {}
+
+  if (!values.fullname) {
+    errors.fullname = 'Fullname required !'
+  } else if (values.fullname.length > 15) {
+    errors.fullname = 'Fullname must be 15 characters or less!'
+  }
+
+  if (!values.number) {
+    errors.number = 'Number required !'
+  } else if (!values.number.length === 17) {
+    errors.number = 'Number must be 17 characters !'
+  } else if (!/^[+\d{2}(\d{3})\d{3}\-\d{2}\-\d{2}]{17}$/.test(values.number)) {
+    errors.number = 'Invalid number ! Example number: +38(000)000-00-00'
+  }
+
+  if (values.add_number) {
+    if (!values.add_number.length === 17) {
+      errors.add_number = 'Additional number must be 17 characters !'
+    }
+    if (!/^[+\d{2}(\d{3})\d{3}\-\d{2}\-\d{2}]{17}$/.test(values.add_number)) {
+      errors.add_number = 'Invalid additional number ! Example number: +38(000)000-00-00'
+    }
+  }
+
+  if (values.email) {
+    if (!/^[\w-.]+@[\w-]+.[a-z]{2,4}$/i.test(values.email)) {
+      errors.email = 'Invalid email address !'
+    }
+  }
+
+  if (values.type) {
+    if (!/^[a-z]{4,}$/i.test(values.type)) {
+      errors.type = 'Invalid type !'
+    }
+  }
+  return errors
+}
+
+const renderAddField = ({
+  type,
+  placeholder,
+  input,
+  meta: { touched, error }
+}) => {
+  return (
+    <>
+      <div className="input-field-block-add">
+        <label className="input-name-label-add">{input.name.toUpperCase()}</label>
+        <input {...input} className="input-field-add" type={type} placeholder={placeholder}/>
+      </div>
+      {touched && error ? <label className="errors-label-add">{error}</label> : null}
+    </>
+  )
+}
+
+let CardAdding = (props) => {
+
+    function dragSrartHandler(e) {
+      e.preventDefault()
+      e.target.classList.toggle("on-drag-start-add",true)
+    }
+
+    function dragLeaveHandler(e) {
+      e.preventDefault()
+      e.target.classList.toggle("on-drag-start-add",false)
+    }
+
+    function onDropHandler(e){
+      e.preventDefault()
+      e.target.classList.toggle("on-drag-start-add",false)
+      let files = [...e.dataTransfer.files]
+      if(files.length > 1){
+        alert("Only on file is permitted to use for contact avatar")
+        files = null
+      }
+      const reader = new FileReader()
+      // let formData = new FormData()
+      // formData.append('url',files[0])
+      // props.setAvaSrc(URL.createObjectURL(files[0]))
+      if(files){
+        reader.readAsDataURL(files[0])
+        reader.onloadend = function () {
+          props.setAvaSrc(reader.result)
+        }
+      }
+    }
+
     return(
-       <form onSubmit={props.handleSubmit}>{
-         <div>
-             <div className="ava-holder-editpage">
-                  <img src={ava} alt=""/>
-             </div>
-             <div>
-              <Field className="edt-input" name="fullname" component="input" type="text" placeholder="Fullname"/>
-             </div>
-            <div>
-              <Field className="edt-input" name="number" component="input" type="text" placeholder="Number"/>
-            </div>
-            <div>
-              <Field className="edt-input" name="add_number" component="input" type="text" placeholder="Additional number"/>
-            </div>
-            <div>
-              <Field className="edt-input" name="company" component="input" type="text" placeholder="Company"/>
-            </div>
-            <div>
-              <Field className="edt-input" name="email" component="input" type="email" placeholder="Email"/>
-            </div>
-            <div>
-              <Field className="edt-input" name="type" component="select">
-                <option value="" hidden>Type</option>
-                <option value="Work">Work</option>
-                <option value="Friends">Friends</option>
-                <option value="Family">Family</option>
-                <option value="Other">Other</option>
-              </Field>
-            </div>
-            <button className="sbmt-btn" type="submit">Save</button>
+      <form onSubmit={props.handleSubmit}>
+        <div className="add-page">
+          <div className="ava-holder">
+            <img
+              className="contact-add-ava"
+              onDragStart={e => dragSrartHandler(e)}
+              onDragOver={e => dragSrartHandler(e)}
+              onDragLeave={e => dragLeaveHandler(e)}
+              onDrop={e => onDropHandler(e)}
+              src={props.ava_src}
+              alt=""
+            />
           </div>
-      }</form>
+          <Field name="fullname" component={renderAddField} type="text" />
+          <Field name="number" component={renderAddField} type="text" placeholder="+38(000)000-00-00"/>
+          <Field name="add_number" component={renderAddField} type="text" placeholder="+38(000)000-00-00"/>
+          <Field name="company" component={renderAddField} type="text" />
+          <Field name="email" component={renderAddField} type="email" />
+          <Field name="type" list="types" component={renderAddField} />
+          <datalist id="types">
+            <option value="Work">Work</option>
+            <option value="Friends">Friends</option>
+            <option value="Family">Family</option>
+            <option value="Other">Other</option>
+          </datalist>
+          <div className="sbmt-block">
+            <button className="sbmt" type="submit">Save</button>
+            <button className="sbmt" type="button" onClick={props.reset}>
+              Clear
+            </button>
+          </div>
+        </div>
+      </form>
     )
 }
 
 const CardAddingReduxForm = reduxForm({
-  // a unique name for the form
-  form: 'card-adding'
+  form: 'card-adding',
+  validate
 })(CardAdding)
 //props.handleSubmit приходит в CardEdit с контейнерной компоненты CardEditReduxForm которая создаеться через reduxForm({})(CardEdit)
 // при сабмите handleSubmit выполняет следующие действия:

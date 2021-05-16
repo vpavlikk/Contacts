@@ -1,15 +1,21 @@
-.ava-holder-editpage
-    position: relative
-    width: 100vw
-    height: 55vh
-    img
-        width: 100%
-        max-width: 500px
-        height: 55vh
-        left: 49%
-        transform: translate(-50%, -50%)
-        object-fit: cover
-        border-radius: 50%
+.info-block
+    display: flex
+    flex-direction: column
+    margin-top: 15px
+
+.ava
+    display: block
+    text-align: center
+.contact-info-ava
+    max-width: 316px
+    height: 40vh
+    width: 80vw
+    border-radius: 30%
+    border: 3px solid #63bded
+    box-shadow: 0 0 5px #63bded
+@media screen and (max-width: 345px)
+  .contact-info-ava
+    height: 80vw
 .info
     display: block
     width: 100%
@@ -20,29 +26,39 @@
 span
     color: black
 
+.back-btn-block
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-top: 10px
+    margin-bottom: 15px
 .back-btn
-    display: grid
-    margin-left: 300px
-    margin-right: 300px
-    margin-top: 20px
-    grid-template-columns: 100%
-    justify-self: center
-    height: 40px
+    display: flex
+    color: black
     background-color: #80c9f0
     box-sizing: border-box
-    text-align: center
-    padding-top: 10px
-    padding-bottom: 5px
+    align-items: center
+    justify-content: center
     border-radius: 20px
+    width: 15%
+    min-width: 55px
+    height: 5vh
     &:hover
-        background-color: #63bded
-        color: #63bded
+      border: 2px solid #63bded
+      background: #63bded
+      box-shadow: 0 0 5px #63bded
+    &:focus
+      outline: none
+    &:active
+      padding-top: 4px
+
 a
-  text-decoration: none
-lable
-  margin-top: 10px
-  font-size: 11px
-  display: block
-  width: 100%
-  text-align: center
-  text-decoration: underline
+    text-decoration: none
+
+.label-info
+    margin-top: 10px
+    font-size: 11px
+    display: block
+    width: 100%
+    text-align: center
+    text-decoration: underline

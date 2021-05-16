@@ -1,21 +1,131 @@
+.auth-pages
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+.content-holder
+  display: flex
+  flex-direction: column
+  margin-top: 30vh
+  align-items: center
+  justify-content: center
+  width: 40vw
+  border-radius: 25%
+  height: 250px
+  border: 3px solid #63bded
+  box-shadow: 0 0 5px #63bded
+  background-color: #DCDCDC
+  transition: all 1s ease-out
+
+.top-edit-input
+  margin-top: 30px
+  display: flex
+  box-sizing: border-box
+  padding: 15px
+  height: 30px
+  border: 1px solid #c0c0c0
+  border-radius: 20px
+  width: 80%
+  min-width: 70px
+  &:focus
+    outline: none
+    border: 1px solid #63bded
+    box-shadow: 0 0 5px #63bded
+
 .edit-input
+    display: flex
     box-sizing: border-box
-    padding-left: 10px
-    width: 90%
-    margin-top: 20px
-    margin-left: 5%
+    margin-top: 15px
+    padding: 15px
     height: 30px
+    border: 1px solid #c0c0c0
     border-radius: 20px
-    border: 1px solid #b4b4b4
+    width: 80%
+    min-width: 70px
+    &:focus
+      outline: none
+      border: 1px solid #63bded
+      box-shadow: 0 0 5px #63bded
 .sbmt-btn
-    width: 90%
     font-weight: bold
-    height: 30px
     background: linear-gradient(to top, #8fcff1, #80c9f0)
     border: 2px solid #73c2ee
-    margin-top: 30px
-    margin-left: 5%
-.to-sign-up
-    text-align: center
-    a:link
-      text-decoration: none
+    margin-top: 15px
+    min-width: 70px
+    &:focus
+      outline: none
+    &:hover
+      border: 2px solid #63bded
+      background: #63bded
+      box-shadow: 0 0 5px #63bded
+    &:active
+      padding-top: 4px
+
+.auth-links
+  display: flex
+  text-align: center
+  color: black
+  margin-left: 20px
+  margin-right: 20px
+  margin-top: 15px
+  padding-bottom: 20px
+  transition: all 1s ease-out
+  &:hover
+    font-weight: bold
+
+.password-holder-login
+  display: flex
+  flex-direction: row
+  width: 80%
+  align-items: center
+  justify-content: center
+.login-pswd-fld
+  display: flex
+  box-sizing: border-box
+  height: 30px
+  border: 1px solid #c0c0c0
+  border-radius: 20px
+  width: 100%
+  margin-top: 15px
+  padding: 15px
+  min-width: 70px
+  &:focus
+    outline: none
+    border: 1px solid #63bded
+    box-shadow: 0 0 5px #63bded
+.login-pswd-show-btn
+  display: flex
+  align-items: center
+  justify-content: center
+  box-sizing: border-box
+  height: 30px
+  width: 130px
+  border: 1px solid #c0c0c0
+  border-radius: 20px
+  margin-top: 15px
+  margin-left: 5px
+  &:focus
+    outline: none
+  &:hover
+    border: 2px solid #63bded
+    background: #63bded
+    box-shadow: 0 0 5px #63bded
+  &:active
+    padding-top: 4px
+
+@media screen and (max-width: 345px)
+    .password-holder-login
+        flex-direction: column
+        margin-bottom: 0
+    .login-pswd-show-btn
+          margin-top: 5px
+          margin-left: 0
+          width: 80%
+          height: 25px
+    .sbmt-btn
+        margin-top: 10px
+    .auth-links
+      padding-bottom: 10px
+@media screen and (max-width: 336px)
+  .auth-links
+    font-size: 10px
